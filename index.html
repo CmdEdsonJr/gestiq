@@ -1044,6 +1044,7 @@ async function confirmarRemocaoCategoria(){
 // ============================================================
 async function carregarDashboard(){
   if(!STATE.empresaId)return;
+  console.log('empresaId:', STATE.empresaId);
   mostrarLoading();
   const hoje=dataLocalHoje();
   const mesAno=hoje.slice(0,7);
