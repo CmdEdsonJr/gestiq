@@ -860,16 +860,16 @@ document.addEventListener('DOMContentLoaded',async()=>{
   document.getElementById('filtro-conta-ano').value=ano;
   document.getElementById('filtro-conta-ano-aux').value=ano;
 
-  sb.auth.onAuthStateChange(async(event,session)=>{
+sb.auth.onAuthStateChange(async(event,session)=>{
     if(session){
       STATE.user=session.user;
-      await carregarEmpresa();
       document.getElementById('auth-screen').style.display='none';
       document.getElementById('app-screen').classList.add('show');
       document.getElementById('topbar-user-nome').textContent=STATE.user.email.split('@')[0];
       document.getElementById('nt-data').value=dataLocalHoje();
       document.getElementById('conta-vencimento').value=dataLocalHoje();
-      carregarDashboard().finally(()=>esconderLoading());
+      await carregarEmpresa();
+      esconderLoading();
     } else {
       document.getElementById('auth-screen').style.display='flex';
       document.getElementById('app-screen').classList.remove('show');
