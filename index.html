@@ -869,7 +869,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
       document.getElementById('topbar-user-nome').textContent=STATE.user.email.split('@')[0];
       document.getElementById('nt-data').value=dataLocalHoje();
       document.getElementById('conta-vencimento').value=dataLocalHoje();
-      carregarDashboard();
+      carregarDashboard().finally(()=>esconderLoading());
     } else {
       document.getElementById('auth-screen').style.display='flex';
       document.getElementById('app-screen').classList.remove('show');
