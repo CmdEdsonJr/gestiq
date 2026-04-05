@@ -767,6 +767,13 @@ function esconderLoading(){document.getElementById('loading-overlay').classList.
 function abrirModal(id){document.getElementById(id).classList.add('open');}
 function fecharModal(id){document.getElementById(id).classList.remove('open');}
 
+// Garante que o loading nunca fica preso
+setInterval(()=>{
+  if(document.getElementById('loading-overlay').classList.contains('show')){
+    setTimeout(()=>esconderLoading(),8000);
+  }
+},8000);  
+  
 document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{
   if(e.target===o){
     const m=o.querySelector('.modal');
@@ -1184,7 +1191,7 @@ async function salvarTransacao(){
   if(!ok){toast('Preencha todos os campos obrigatórios!','warning');return;}
   const val=valorNumerico(document.getElementById('nt-valor'));
   if(val<=0){toast('O valor deve ser maior que zero!','warning');return;}
-  mostrarLoading();
+mostrarLoading();
   const{error}=await sb.from('transacoes').insert({
     empresa_id:STATE.empresaId,
     data:document.getElementById('nt-data').value,
